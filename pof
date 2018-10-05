@@ -1,0 +1,40 @@
+//pof.com
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function setLocalStorageCount(count){
+  if (window.localStorage) {
+    localStorage.text = count.toString();
+    console.log("set to " + count);
+  }
+
+}
+async function meetme(waittime){
+  await sleep(5000);
+  if(decrementOne() > 0){
+  document.getElementById("meet-me-button-yes-var").click();
+}
+
+}
+
+var supported = 1
+
+function decrementOne(){
+  if (window.localStorage) {
+  var p =0 ;
+  if (localStorage.text == null || localStorage.text == '0') {
+    setLocalStorageCount(100);
+  } else {
+    p = parseInt(localStorage.text);
+  }
+  if(p > 0 ){
+    p--;
+  }
+  localStorage.text = p.toString();
+  console.log("p is" + p);
+  return p;
+  }
+}
+
+meetme();
